@@ -54,7 +54,11 @@
         <button (click)="completarTarea(tarea.id)">
           Completar
         </button>
+        
       }
+      <button (click)="eliminarTarea(tarea.id)">
+          Eliminar
+        </button>
     </li>
   } @empty {
     <li>No hay tareas registradas.</li>
