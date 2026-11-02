@@ -1,0 +1,160 @@
+:host {
+  display: block;
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+h2 {
+  margin: 0 0 25px;
+  color: #334155;
+  font-size: 21px;
+  font-weight: 600;
+}
+
+ul {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 20px 22px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  color: #334155;
+  font-size: 15px;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+li:hover {
+  border-color: #93c5fd;
+  box-shadow: 0 5px 15px rgba(15, 23, 42, 0.07);
+}
+
+li span {
+  color: #16a34a;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+button {
+  flex-shrink: 0;
+  padding: 9px 16px;
+  border: none;
+  border-radius: 8px;
+  background: #2563eb;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+button:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+li:has(span) {
+  background: #f0fdf4;
+  border-color: #bbf7d0;
+}
+.buscador {
+  margin-bottom: 20px;
+}
+
+.buscador input {
+  width: 100%;
+  padding: 14px 16px;
+  box-sizing: border-box;
+  border: 1px solid #cbd5e1;
+  border-radius: 9px;
+  outline: none;
+  font-size: 15px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.buscador input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.nombre-tarea {
+  flex: 1;
+}
+
+.sin-resultados {
+  justify-content: center;
+  color: #64748b;
+  font-style: italic;
+}
+
+.filtros {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.filtros button {
+  padding: 10px 16px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background: white;
+  color: #334155;
+  cursor: pointer;
+}
+
+.filtros button.activo {
+  background: #2563eb;
+  color: white;
+  border-color: #2563eb;
+}
+
+.progreso {
+  margin: 20px 0;
+}
+
+.progreso-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.barra-progreso {
+  width: 100%;
+  height: 12px;
+  background: #e2e8f0;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.barra-progreso-valor {
+  height: 100%;
+  background: #16a34a;
+  border-radius: 10px;
+  transition: width 0.3s ease;
+}
+@media (max-width: 600px) {
+  li {
+    padding: 15px;
+    flex-wrap: wrap;
+  }
+
+  button {
+    width: 100%;
+  }
+}

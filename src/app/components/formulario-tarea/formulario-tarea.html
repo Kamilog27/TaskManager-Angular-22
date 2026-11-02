@@ -1,0 +1,40 @@
+<section class="formulario-container">
+
+  <h2>Nueva tarea</h2>
+
+  <form [formGroup]="formulario" (ngSubmit)="guardarTarea()">
+
+    <div class="campo">
+
+      <label for="nombre">Nombre de la tarea</label>
+
+      <input
+        id="nombre"
+        type="text"
+        formControlName="nombre"
+        placeholder="Ej. Aprender Angular 22"
+      />
+
+      @if (
+        formulario.controls.nombre.touched &&
+        formulario.controls.nombre.hasError('required')
+      ) {
+        <small>El nombre de la tarea es obligatorio.</small>
+      }
+
+      @if (
+        formulario.controls.nombre.touched &&
+        formulario.controls.nombre.hasError('minlength')
+      ) {
+        <small>Debes escribir al menos 3 caracteres.</small>
+      }
+
+    </div>
+
+    <button type="submit">
+      Agregar tarea
+    </button>
+
+  </form>
+
+</section>

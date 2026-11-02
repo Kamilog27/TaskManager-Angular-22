@@ -1,0 +1,10 @@
+<h1>{{ titulo }}</h1>
+<app-formulario-tarea
+  (tareaCreada)="agregarTarea($event)">
+</app-formulario-tarea>
+
+<app-lista-tareas
+  [titulo]="'Mis tareas'"
+  [tareas]="tareas()"
+  (tareaCompletada)="marcarComoCompletada($event)">
+</app-lista-tareas>

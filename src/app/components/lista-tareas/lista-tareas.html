@@ -1,0 +1,62 @@
+<h2>{{ titulo() }}</h2>
+
+
+<div class="progreso">
+  <div class="progreso-info">
+    <span>Progreso de tareas</span>
+    <strong>{{ porcentajeCompletado() }}%</strong>
+  </div>
+
+  <div class="barra-progreso">
+    <div
+      class="barra-progreso-valor"
+      [style.width.%]="porcentajeCompletado()">
+    </div>
+  </div>
+</div>
+
+<div class="filtros">
+  <button
+    [class.activo]="filtroEstado() === 'todas'"
+    (click)="filtroEstado.set('todas')">
+    Todas - {{totalTareas()}}
+  </button>
+
+  <button
+    [class.activo]="filtroEstado() === 'pendientes'"
+    (click)="filtroEstado.set('pendientes')">
+    Pendientes - {{totalPendientes()}}
+    </button>
+
+  <button
+    [class.activo]="filtroEstado() === 'completadas'"
+    (click)="filtroEstado.set('completadas')">
+    Completadas -  {{totalCompletadas()}}
+  </button>
+</div>
+
+<div class="buscador">
+  <input
+    type="text"
+    [formControl]="busqueda"
+    placeholder="Buscar una tarea..."
+  />
+</div>
+
+<ul>
+  @for (tarea of tareasFiltradas(); track tarea.id) {
+    <li>
+      {{ tarea.nombre }}
+
+      @if (tarea.completada) {
+        <span> - Completada</span>
+      } @else {
+        <button (click)="completarTarea(tarea.id)">
+          Completar
+        </button>
+      }
+    </li>
+  } @empty {
+    <li>No hay tareas registradas.</li>
+  }
+</ul>
