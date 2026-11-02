@@ -1,8 +1,9 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { ListaTareas } from './components/lista-tareas/lista-tareas';
 import { Tarea } from '../models/tarea';
 import { FormularioTarea } from './components/formulario-tarea/formulario-tarea';
-
+import { inject } from '@angular/core';
+import { TareasService } from './services/tareas';
 
 @Component({
   imports: [ListaTareas, FormularioTarea],
@@ -11,51 +12,20 @@ import { FormularioTarea } from './components/formulario-tarea/formulario-tarea'
   templateUrl: './app.html',
 })
 export class App {
-
+  private tareasService = inject(TareasService);
   titulo = 'Mi administrador de tareas';
 
-  tareas = signal<Tarea[]>([
-    {
-      id: 1,
-      nombre: 'Estudiar Angular',
-      completada: false
-    },
-    {
-      id: 2,
-      nombre: 'Crear mi primera aplicación',
-      completada: false
-    },
-    {
-      id: 3,
-      nombre: 'Aprender Signals',
-      completada: false
-    }
-  ]);
+ tareas = this.tareasService.tareas;
 
   marcarComoCompletada(id: number) {
 
-    this.tareas.update(lista =>
-      lista.map(tarea =>
-        tarea.id === id
-          ? { ...tarea, completada: true }
-          : tarea
-      )
-    );
+      this.tareasService.completarTarea(id);
 
   }
 
   agregarTarea(nombre: string) {
 
-  const nuevaTarea: Tarea = {
-    id: Date.now(),
-    nombre: nombre,
-    completada: false
-  };
+   this.tareasService.agregarTarea(nombre);
 
-  this.tareas.update(lista => [
-    ...lista,
-    nuevaTarea
-  ]);
-
-}
+  }
 }
