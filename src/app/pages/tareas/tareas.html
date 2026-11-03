@@ -1,0 +1,23 @@
+
+<h1>{{ titulo }}</h1>
+<button (click)="irAEstadisticas()">
+  Ver estadísticas
+</button>
+@if (cargando()) {
+  <p>Cargando tareas...</p>
+}
+@else if (error()) {
+  <p>{{ error() }}</p>
+}
+@else {
+  <app-formulario-tarea
+    (tareaCreada)="agregarTarea($event)">
+  </app-formulario-tarea>
+
+  <app-lista-tareas
+    [titulo]="'Mis tareas'"
+    [tareas]="tareas()"
+    (tareaCompletada)="marcarComoCompletada($event)"
+    (tareaEliminada)="eliminarTarea($event)">
+  </app-lista-tareas>
+}

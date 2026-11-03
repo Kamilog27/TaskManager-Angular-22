@@ -1,20 +1,26 @@
-<h1>{{ titulo }}</h1>
+<div class="layout">
 
-@if (cargando()) {
-  <p>Cargando tareas...</p>
-}
-@else if (error()) {
-  <p>{{ error() }}</p>
-}
-@else {
-  <app-formulario-tarea
-    (tareaCreada)="agregarTarea($event)">
-  </app-formulario-tarea>
+  <header class="navbar">
+    <div class="logo">
+      <span class="logo-icon">✓</span>
+      <h2>TaskManager</h2>
+    </div>
 
-  <app-lista-tareas
-    [titulo]="'Mis tareas'"
-    [tareas]="tareas()"
-    (tareaCompletada)="marcarComoCompletada($event)"
-    (tareaEliminada)="eliminarTarea($event)">
-  </app-lista-tareas>
-}
+    <nav class="menu">
+      <a routerLink="/tareas" routerLinkActive="activo"  [routerLinkActiveOptions]="{ exact: true }" >
+        <span>☷</span>
+        Mis tareas
+      </a>
+
+      <a routerLink="/estadisticas" routerLinkActive="activo"  [routerLinkActiveOptions]="{ exact: true }">
+        <span>▥</span>
+        Estadísticas
+      </a>
+    </nav>
+  </header>
+
+  <main class="contenido">
+    <router-outlet></router-outlet>
+  </main>
+
+</div>
