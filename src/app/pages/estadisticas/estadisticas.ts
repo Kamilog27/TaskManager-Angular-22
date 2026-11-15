@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   imports: [],
@@ -8,9 +8,13 @@ import { Router } from '@angular/router';
   templateUrl: './estadisticas.html',
 })
 export class Estadisticas {
-    private router = inject(Router);
+  private router = inject(Router);
+  private route = inject(ActivatedRoute);
 
-    volverATareas(){
-      this.router.navigate(['/tareas'])
-    }
+  volverATareas() {
+    this.router.navigate(['/tareas'])
+  }
+  titulo = this.route.snapshot.data['titulo'];
+  descripcion = this.route.snapshot.data['descripcion'];
+  requiereAutorizacion = this.route.snapshot.data['requiereAutorizacion'];
 }

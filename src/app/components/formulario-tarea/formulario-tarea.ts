@@ -8,7 +8,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
   styleUrl: './formulario-tarea.css',
 })
 export class FormularioTarea {
-
+hayCambiosSinGuardar = false;
   tareaCreada = output<string>();
 
   formulario = new FormGroup({
@@ -20,7 +20,11 @@ export class FormularioTarea {
       ]
     })
   });
-
+ constructor() {
+    this.formulario.valueChanges.subscribe(() => {
+      this.hayCambiosSinGuardar = this.formulario.dirty;
+    });
+  }
   guardarTarea() {
 
     if (this.formulario.invalid) {
@@ -37,5 +41,7 @@ export class FormularioTarea {
     this.tareaCreada.emit(nombre);
 
     this.formulario.reset();
+    this.hayCambiosSinGuardar = false;
+
   }
 }

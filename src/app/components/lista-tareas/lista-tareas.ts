@@ -1,4 +1,4 @@
-import { Component, computed, input, output, signal } from '@angular/core';
+import { Component, computed, effect, input, output, signal } from '@angular/core';
 import { Tarea } from '../../../models/tarea';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -12,11 +12,19 @@ type FiltroEstado = 'todas' | 'pendientes' | 'completadas';
   templateUrl: './lista-tareas.html',
 })
 export class ListaTareas {
+  estadoUrl = input<FiltroEstado>('todas');
+  constructor() {
+    
+    effect(() => {
+      this.filtroEstado.set(this.estadoUrl());
+    });
+  }
   titulo = input.required<string>();
 
   tareas = input.required<Tarea[]>();
 
   filtroEstado = signal<FiltroEstado>('todas');
+  filtroEstadoChange = output<FiltroEstado>();
   tareaEliminada = output<number>();
   tareaCompletada = output<number>();
   // 1. Control del campo de búsqueda

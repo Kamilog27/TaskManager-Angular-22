@@ -24,7 +24,7 @@
 
   <button
     [class.activo]="filtroEstado() === 'pendientes'"
-    (click)="filtroEstado.set('pendientes')">
+    (click)="filtroEstado.set('pendientes'); filtroEstadoChange.emit('pendientes')">
     Pendientes - {{totalPendientes()}}
     </button>
 

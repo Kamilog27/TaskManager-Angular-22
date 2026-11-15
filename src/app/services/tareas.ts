@@ -61,7 +61,17 @@ export class TareasService {
       }
     })
   }
-
+obtenerTareaPorId(id: number): Observable<Tarea> {
+  return this.http.get<TodoApi>(
+    `https://jsonplaceholder.typicode.com/todos/${id}`
+  ).pipe(
+    map(todo => ({
+      id: todo.id,
+      nombre: todo.title,
+      completada: todo.completed
+    }))
+  );
+}
 
 // Crear tarea y actualizar Signal
   agregarTarea(nombre: string) {

@@ -16,7 +16,8 @@
 
   <app-lista-tareas
     [titulo]="'Mis tareas'"
-    [tareas]="tareas()"
+    [tareas]="tareasfiltradas()"
+    (filtroEstadoChange)="filtrarPorEstado($event)"
     (tareaCompletada)="marcarComoCompletada($event)"
     (tareaEliminada)="eliminarTarea($event)">
   </app-lista-tareas>

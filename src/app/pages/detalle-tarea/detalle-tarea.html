@@ -1,0 +1,8 @@
+<p>Nombre: {{ tarea().nombre }}</p>
+<p>ID: {{ tarea().id }}</p>
+
+@if (tarea().completada) {
+    <p>Estado: Completada</p>
+} @else {
+    <p>Estado: Pendiente</p>
+}
